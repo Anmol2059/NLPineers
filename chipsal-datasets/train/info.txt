@@ -1,0 +1,60 @@
+datasets are from : https://github.com/therealthapa/chipsal24
+---------------------------------------
+Sub Task 1  --> Devnagari Identification
+---------------------------------------
+'Nepali'     : 0
+'Marathi'    : 1
+'Sanskrit'   : 2
+'Bhojpuri'   : 3
+'Hindi'      : 4
+
+[Train Data]
+-------------
+Nepali       : 12544
+Marathi      : 11034
+Sanskrit     : 10996
+Bhojpuri     : 10184
+Hindi        :  7664
+
+[Evaluation Data]
+-----------------
+Nepali       : 2688
+Marathi      : 2364
+Sanskrit     : 2356
+Bhojpuri     : 2182
+Hindi        : 1643
+
+---------------------------------------
+Sub Task 2  --> Hate Speech Detection in Devanagari Script Language
+---------------------------------------
+'non-hate'   : 0
+'hate'       : 1
+
+[Train Data]
+-------------
+non-hate     : 16805
+hate         :  2214
+
+[Evaluation Data]
+-----------------
+non-hate     : 3602
+hate         :  474
+
+---------------------------------------
+Sub Task 3  --> Target Identification for Hate Speech in Devanagari Script Language
+---------------------------------------
+'Individual'     : 0
+'Organization'   : 1
+'Community'      : 2
+
+[Train Data]
+-------------
+Individual       : 1074
+Organization     :  856
+Community        :  284
+
+[Evaluation Data]
+-----------------
+Individual       : 230
+Organization     : 183
+Community        :  61
