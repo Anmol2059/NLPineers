@@ -13,7 +13,7 @@ This project focuses on developing an ensemble-based model for hate speech detec
 ## Scripts for:
 
 
-- **Data Augmentation:** Augmentation techniques are applied to the Hindi dataset to address class imbalance and enhance model performance.
+- **Data Augmentation:** Augmentation techniques are applied to both Hindi and Nepali dataset to address class imbalance and enhance model performance.
 - **Multiple Models:** The repository includes different models (referred to as m1, m2, m3, etc.) to handle various configurations and techniques. Please refer to the papers table for detailed descriptions of each model.
 
 ## Setup
