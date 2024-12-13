@@ -14,8 +14,8 @@ from sklearn.preprocessing import StandardScaler
 tokenizer = AutoTokenizer.from_pretrained("google/muril-base-cased")
 muril_model = AutoModel.from_pretrained("google/muril-base-cased").to("cuda" if torch.cuda.is_available() else "cpu")
 
-train_df = pd.read_csv('/home/anmol/codes/CHIPSAL/dataset/train.csv')
-test_df = pd.read_csv('/home/anmol/codes/CHIPSAL/dataset/test.csv')
+train_df = pd.read_csv('/codes/CHIPSAL/dataset/train.csv')
+test_df = pd.read_csv('/codes/CHIPSAL/dataset/test.csv')
 
 train_df['tweet'] = train_df['tweet'].astype(str)
 test_df['tweet'] = test_df['tweet'].astype(str)
@@ -44,9 +44,9 @@ tabnet_clf = TabNetClassifier(optimizer_fn=torch.optim.Adam, optimizer_params=di
 tabnet_clf.fit(
     train_embeddings,
     train_labels,
-    max_epochs=150,       # Increase number of epochs
-    patience=10,         # Early stopping after 10 epochs without improvement
-    batch_size=256,      # Adjust batch size for your GPU memory
+    max_epochs=150,      
+    patience=10,        
+    batch_size=256,     
     drop_last=False
 )
 
@@ -55,7 +55,7 @@ pred_labels = tabnet_clf.predict(test_embeddings)
 pred_labels = np.where(pred_labels == 1, 1, 0)
 
 submission_df = pd.DataFrame({
-    'index': test_df['index'],  # Using 'index' from the test data
+    'index': test_df['index'], 
     'prediction': pred_labels.tolist()
 })
 

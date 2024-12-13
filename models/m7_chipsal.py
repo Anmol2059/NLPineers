@@ -37,7 +37,7 @@ class HateSpeechDataset(Dataset):
 
 # Prepare train dataset
 train_texts = train_df['tweet'].tolist()
-train_labels = train_df['label'].tolist()  # Assuming 1 is hate, 0 is non-hate
+train_labels = train_df['label'].tolist()  
 train_dataset = HateSpeechDataset(train_texts, train_labels)
 
 training_args = TrainingArguments(
@@ -83,7 +83,7 @@ predictions = trainer.predict(test_dataset)
 pred_labels = predictions.predictions.argmax(-1)
 
 submission_df = pd.DataFrame({
-    'index': test_df['index'],  # Using 'index' from the test data
+    'index': test_df['index'], 
     'prediction': pred_labels.tolist()
 })
 

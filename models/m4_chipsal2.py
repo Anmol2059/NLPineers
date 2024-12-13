@@ -14,14 +14,13 @@ from datetime import datetime
 tokenizer = AutoTokenizer.from_pretrained('ai4bharat/indic-bert')
 model = AutoModelForSequenceClassification.from_pretrained('ai4bharat/indic-bert')
 
-dataset_file_path = '/home/anmol/codes/CHIPSAL/final_augmented_dataset_duplicated.csv'
+dataset_file_path = '/codes/CHIPSAL/final_augmented_dataset_duplicated.csv'
 df = pd.read_csv(dataset_file_path)
 print(df)
 
 print(df['label'].value_counts())
 
 def preprocess_text(text):
-    # Remove URLs
     text = re.sub(r'http\S+', '', text)
     # Remove hashtags
     text = re.sub(r'#\S+', '', text)
@@ -70,12 +69,12 @@ training_args = TrainingArguments(
     learning_rate=2e-5,
     per_device_train_batch_size=64,
     per_device_eval_batch_size=64,
-    num_train_epochs=10,  # Set number of epochs to 10
+    num_train_epochs=10, 
     weight_decay=0.01,
     logging_dir=log_dir,
     logging_steps=10,
-    save_strategy="epoch",  # Save the model at the end of every epoch
-    save_total_limit=10,    # Limit the number of saved models
+    save_strategy="epoch", 
+    save_total_limit=10,    
     save_safetensors=False
 )
 
@@ -139,7 +138,7 @@ predictions = trainer.predict(test_dataset)
 pred_labels = np.argmax(predictions.predictions, axis=1)
 
 submission_df = pd.DataFrame({
-    'index': test_df['index'],  # Assuming 'index' column exists in the test data
+    'index': test_df['index'],  
     'prediction': pred_labels.tolist()
 })
 

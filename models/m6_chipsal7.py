@@ -16,8 +16,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 tokenizer = AutoTokenizer.from_pretrained("xlm-roberta-base")
 xlmr_model = AutoModel.from_pretrained("xlm-roberta-base").to("cuda" if torch.cuda.is_available() else "cpu")
 
-train_df = pd.read_csv('/home/anmol/codes/CHIPSAL/dataset/train.csv')
-test_df = pd.read_csv('/home/anmol/codes/CHIPSAL/dataset/test.csv')
+train_df = pd.read_csv('/codes/CHIPSAL/dataset/train.csv')
+test_df = pd.read_csv('/codes/CHIPSAL/dataset/test.csv')
 
 train_df['tweet'] = train_df['tweet'].astype(str)
 test_df['tweet'] = test_df['tweet'].astype(str)
@@ -34,7 +34,7 @@ print("Extracting embeddings from XLM-Roberta model...")
 train_embeddings = np.array([get_xlm_roberta_embeddings(text) for text in tqdm(train_df['tweet'], desc="Train embeddings")])
 test_embeddings = np.array([get_xlm_roberta_embeddings(text) for text in tqdm(test_df['tweet'], desc="Test embeddings")])
 
-train_labels = train_df['label'].values  # Assuming 1 is hate and 0 is non-hate
+train_labels = train_df['label'].values  
 
 scaler = StandardScaler()
 train_embeddings = scaler.fit_transform(train_embeddings)
@@ -47,7 +47,7 @@ log_reg_clf.fit(train_embeddings, train_labels)
 pred_labels = log_reg_clf.predict(test_embeddings)
 
 submission_df = pd.DataFrame({
-    'index': test_df['index'],  # Using 'index' from the test data
+    'index': test_df['index'],  
     'prediction': pred_labels.tolist()
 })
 

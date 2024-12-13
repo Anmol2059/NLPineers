@@ -61,8 +61,7 @@ training_args = TrainingArguments(
     weight_decay=0.01,
     logging_dir=f"{output_dir_name}/logs",
     load_best_model_at_end=True,
-    save_total_limit=1  # Keeps only the latest checkpoint to save disk space
-)
+    save_total_limit=1  
 
 def compute_metrics(pred):
     labels = pred.label_ids

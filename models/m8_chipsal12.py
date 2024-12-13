@@ -15,14 +15,14 @@ print("Loading FastText embeddings for Hindi and Nepali...")
 fasttext_hi = KeyedVectors.load_word2vec_format("cc.hi.300.vec.gz", binary=False)
 fasttext_ne = KeyedVectors.load_word2vec_format("cc.ne.300.vec.gz", binary=False)
 
-embedding_dim = fasttext_hi.vector_size  # Assuming both have the same embedding dimension
+embedding_dim = fasttext_hi.vector_size  
 
 print("Loading train and test datasets...")
 
 
 print("Loading train and test datasets...")
-train_df = pd.read_csv('dataset/train.csv')  # Ensure 'train.csv' has 'tweet' and 'label'
-test_df = pd.read_csv('dataset/test.csv')    # Ensure 'test.csv' has 'tweet' and 'index' (no label for test set)
+train_df = pd.read_csv('dataset/train.csv') 
+test_df = pd.read_csv('dataset/test.csv')
 
 train_df['tweet'] = train_df['tweet'].astype(str).fillna('')
 test_df['tweet'] = test_df['tweet'].astype(str).fillna('')
@@ -57,11 +57,11 @@ class FastTextDataset(Dataset):
             else:
                 emb_ne = np.zeros(embedding_dim)
 
-            # Average the embeddings if the word exists in both, otherwise use what's available
+           
             word_embedding = (emb_hi + emb_ne) / 2 if np.any(emb_hi) and np.any(emb_ne) else emb_hi if np.any(emb_hi) else emb_ne
             word_embeddings.append(word_embedding)
 
-        # Return average word embeddings for the text
+       
         return np.mean(word_embeddings, axis=0) if word_embeddings else np.zeros(embedding_dim)
 
     def __getitem__(self, idx):

@@ -38,7 +38,6 @@ class IndicBERTDataset(Dataset):
     def __len__(self):
         return len(self.texts)
 
-# Prepare train and validation datasets
 train_texts = train_data['tweet'].tolist()
 train_labels = train_data['label'].tolist()
 val_texts = val_data['tweet'].tolist()
@@ -51,18 +50,18 @@ class LSTM_CNN_IndicBERT(nn.Module):
     def __init__(self, hidden_dim, num_classes):
         super(LSTM_CNN_IndicBERT, self).__init__()
         self.indic_bert_model = indic_bert_model
-        self.lstm = nn.LSTM(768, hidden_dim, batch_first=True)  # IndicBERT output is 768 dimensions
+        self.lstm = nn.LSTM(768, hidden_dim, batch_first=True) 
         self.conv1 = nn.Conv1d(hidden_dim, 128, kernel_size=3, padding=1)
         self.fc = nn.Linear(128, num_classes)
 
     def forward(self, input_ids, attention_mask):
-        with torch.no_grad():  # Freeze IndicBERT during LSTM-CNN processing
+        with torch.no_grad():  
             bert_outputs = self.indic_bert_model(input_ids=input_ids, attention_mask=attention_mask)
             last_hidden_state = bert_outputs.last_hidden_state
         
         lstm_out, _ = self.lstm(last_hidden_state)
-        cnn_out = torch.relu(self.conv1(lstm_out.permute(0, 2, 1)))  # Apply Conv1d
-        pooled = torch.mean(cnn_out, dim=-1)  # Global average pooling
+        cnn_out = torch.relu(self.conv1(lstm_out.permute(0, 2, 1))) 
+        pooled = torch.mean(cnn_out, dim=-1) 
         output = self.fc(pooled)
         return output
 
@@ -147,8 +146,7 @@ submission_df = pd.DataFrame({
 json_file_path = f'{output_dir_name}/submission_{timestamp}.json'
 submission_df.to_json(json_file_path, orient='records', lines=True)
 
-# Zip the JSON file for subm
-# ission
+
 zip_file_path = f'{output_dir_name}_{timestamp}.zip'
 with zipfile.ZipFile(zip_file_path, 'w') as zipf:
     zipf.write(json_file_path, arcname=f'submission_{timestamp}.json')
