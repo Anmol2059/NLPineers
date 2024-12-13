@@ -5,7 +5,13 @@ Accepted at [COLING 2025](https://coling2025.org/), part of [CHiPSAL: Challenges
 
 ---
 
-![CHiPSAL Banner](images/Chipsal_banner.jpg) | ![COLING Logo](images/logo-full.png)
+## Banners
+
+<div style="display: flex; align-items: center; justify-content: center;">
+    <img src="images/Chipsal_banner.jpg" alt="CHiPSAL Banner" style="height: 150px; margin-right: 10px;">
+    <img src="images/logo-full.png" alt="COLING Logo" style="height: 150px;">
+</div>
+
 
 This repository hosts the code for the project titled **"Hate Speech Detection using Ensembling of BERT-based Models"** for Devanagari script languages (Hindi, Nepali). The aim is to leverage state-of-the-art techniques like BERT for hate speech detection in South Asian languages.
 
