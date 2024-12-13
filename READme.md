@@ -1,6 +1,6 @@
 # NLPineers@ NLU of Devanagari Script Languages 2025: Hate Speech Detection using Ensembling of BERT-based Models
 
-[![arXiv](https://img.shields.io/badge/arXiv-2412.08163-b31b1b.svg)](https://arxiv.org/abs/2412.08163v1)  <!-- Update with actual arXiv link once available -->
+[![arXiv](https://img.shields.io/badge/arXiv-2412.08163-b31b1b.svg)](https://arxiv.org/abs/2412.08163)  <!-- Update with actual arXiv link once available -->
 
 Accepted at COLING 2025 [COLING 2025](https://coling2025.org/), part of [CHiPSAL: Challenges in Processing South Asian Languages](https://sites.google.com/view/chipsal/)
 
